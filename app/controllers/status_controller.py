@@ -1,20 +1,21 @@
 from flask_restx import Resource
 
 from ..services.status_service import get_service_status
-from ..utils.dto import StatusDto
+from ..models.status_models import StatusModel
 
 
-status_api = StatusDto.api
-_status = StatusDto.status
+status_ns = StatusModel.api
+status_model = StatusModel.status_model
 
 
-@status_api.route('/')
+@status_ns.route('/')
 class Status(Resource):
-    @status_api.doc(
-        id='server_status',
-        description='Endpoint to check service status.'
-    )
-    @status_api.marshal_with(_status)
+    @status_ns.marshal_with(status_model)
+    @status_ns.marshal_with(status_model)
     def get(self):
-        """Service status check endpoint"""
+        """
+        Service status check endpoint
+        TODO add crm health check
+        """
+
         return get_service_status()
