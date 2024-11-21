@@ -1,17 +1,23 @@
-from flask import Blueprint
-from flask_restx import Api
+from flask import Flask
+from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
+from flask_bcrypt import Bcrypt
 
-from .controllers.status_controller import status_ns
-from .controllers.leads_controller import leads_ns
+from app.utils.conf import load_config
 
-blueprint = Blueprint("CRM api", __name__, url_prefix="/api/")
 
-api = Api(
-    blueprint,
-    version="1.0",
-    title="CRM Api",
-    description="API to integrate with a CRM",
-)
+db = SQLAlchemy()
+flask_bcrypt = Bcrypt()
 
-api.add_namespace(status_ns, path='/status')
-api.add_namespace(leads_ns, path='/leads')
+
+def create_app():
+    app = Flask(__name__)
+
+    load_config(app)
+    db.init_app(app)
+    flask_bcrypt.init_app(app)
+    Migrate(app, db)
+    # import models for migration
+    from app.models import users_models, blacklist_models
+
+    return app

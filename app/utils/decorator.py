@@ -1,5 +1,8 @@
 import requests
+from flask import request
 from functools import wraps
+
+from ..services.auth_service import Auth
 
 
 def handle_request_errors(func):
@@ -11,7 +14,6 @@ def handle_request_errors(func):
             return func(*args, **kwargs)
         except requests.exceptions.RequestException as e:
             # Handle request-related errors
-            print(f"Request failed: {e}")
             error_response = {
                 "status": "error",
                 "message": "Unknown error"
@@ -27,6 +29,22 @@ def handle_request_errors(func):
 
         except Exception as e:
             # Handle any other unexpected errors
-            print(f"Unexpected error: {e}")
             return {"status": "error", "message": "Unexpected error"}
     return wrapper
+
+
+def token_required(func):
+    """Decorator to check if the user is logged in. Apply to endpoints where required."""
+
+    @wraps(func)
+    def decorated(*args, **kwargs):
+
+        data, status = Auth.get_logged_in_user(request)
+        token = data.get('data')
+
+        if not token:
+            return data, status
+
+        return func(*args, **kwargs)
+
+    return decorated
