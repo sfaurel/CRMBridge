@@ -22,7 +22,7 @@ authorizations = {
 api = Api(
     blueprint,
     version="1.0",
-    title="CRM Api",
+    title="CRM Bridge Api",
     description="API to integrate with a CRM",
     authorizations=authorizations,
     security='apikey'
