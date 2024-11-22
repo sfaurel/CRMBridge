@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, render_template
 from flask_restx import Api
 
 from app.controllers.status_controller import status_ns
@@ -36,6 +36,15 @@ api.add_namespace(auth_ns)
 
 app = create_app()
 app.register_blueprint(blueprint)
+
+
+@app.route("/")
+def landing_page():
+    """
+    Renders the landing page to guide users to the API documentation and endpoints.
+    """
+    return render_template("index.html")
+
 
 if __name__ == "__main__":
     app.run(port=8080, debug=True)

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Inicio de la API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #4CAF50;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3 {
+            color: #4CAF50;
+        }
+
+        p, li {
+            font-size: 1rem;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin: 0.5rem 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.6rem;
+            font-size: 0.8rem;
+            font-weight: bold;
+            border-radius: 4px;
+            margin-right: 0.5rem;
+            color: #fff;
+        }
+
+        .badge-post {
+            background-color: #007BFF;
+        }
+
+        .badge-get {
+            background-color: #28A745;
+        }
+
+        .badge-delete {
+            background-color: #DC3545;
+        }
+
+        .badge-put {
+            background-color: #FFC107;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Documentación de la API</h1>
+    </header>
+    <main>
+        <h2>Bienvenido</h2>
+        <p>
+            La documentación de la API está disponible en el endpoint <a href="/api">/api</a>.
+        </p>
+        <h2>Instrucciones</h2>
+        <ul>
+            <li>
+                <span class="badge badge-post">POST</span>
+                <strong>/users</strong>: Crear un usuario
+            </li>
+            <li>
+                <span class="badge badge-get">GET</span>
+                <strong>/leads</strong>: Acceder a los leads (requiere inicio de sesión)
+            </li>
+            <li>
+                <span class="badge badge-post">POST</span>
+                <strong>/auth/login</strong>: Iniciar sesión
+            </li>
+            <li>
+                <span class="badge badge-get">GET</span>
+                <strong>/auth/logout</strong>: Cerrar sesión
+            </li>
+            <li>
+                <span class="badge badge-get">GET</span>
+                <strong>/status</strong>: Consultar el estado de la API
+            </li>
+        </ul>
+        <p>
+            Se necesita un token JWT para interactuar con los endpoints protegidos. Utiliza el endpoint <strong>/auth/login</strong> con las credenciales de usuario y copia el token (Authorization) devuelto en el botón "Authorize" de la documentación.
+        <p>
+        
+        <p>Para obtener más detalles sobre el uso de la API consulta la documentación.</p>
+    </main>
+</body>
+</html>
