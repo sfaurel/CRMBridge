@@ -18,7 +18,7 @@ class CRMService:
         "authorization": f"Basic {basic_token}"
     }
     lead_stage = 5001
-    pipeline_key = 'agxzfm1haWxmb29nYWVyPAsSDE9yZ2FuaXphdGlvbiIVaWtlZ2FpLnNla2lAZ21haWwuY29tDAsSCFdvcmtmbG93GICA-YvZwMoJDA'
+    pipeline_key = 'agxzfm1haWxmb29nYWVyPAsSDE9yZ2FuaXphdGlvbiIVYm9kb3F1ZTAwNDlAZ21haWwuY29tDAsSCFdvcmtmbG93GICA-Zvb7c0JDA'
 
     @classmethod
     @handle_request_errors
