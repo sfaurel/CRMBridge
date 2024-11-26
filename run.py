@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, redirect
 from flask_restx import Api
 
 from app.controllers.status_controller import status_ns
@@ -23,7 +23,16 @@ api = Api(
     blueprint,
     version="1.0",
     title="CRM Bridge Api",
-    description="API to integrate with a CRM",
+    description=(
+        "This API is a integration with a CRM system for lead management.\n\n"
+        "Use /users to create a new user\n"
+        "/leads and GET /users are protected endpoints \n\n"
+        "**Authentication:**\n"
+        "Protected endpoints require a JWT token for access. To obtain the token:\n"
+        "1. Use the endpoint **`POST /auth/login`** with user credentials.\n"
+        "2. Copy the token provided in the response.\n"
+        "3. Use the token in the **'Authorize'** button of this documentation, with the format: `Bearer <token>`."
+    ),
     authorizations=authorizations,
     security='apikey'
 )
@@ -41,9 +50,9 @@ app.register_blueprint(blueprint)
 @app.route("/")
 def landing_page():
     """
-    Renders the landing page to guide users to the API documentation and endpoints.
+    Redirects to the API documentation.
     """
-    return render_template("index.html")
+    return redirect("/api")
 
 
 if __name__ == "__main__":
